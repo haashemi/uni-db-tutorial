@@ -1,45 +1,45 @@
 # 🗃️ CRUD Basics
 
-In this tutorial we're going to learn how to work with databases _practically_. We'll start with creating a database, creating the tables, and perform some basic CRUD operations.
+In this tutorial, we'll learn how to work with databases _practically_. We'll start by creating a database, creating tables, and performing some basic CRUD operations.
 
-This tutorial assumes that you already home common knowledge on what a database is, what relational-database is, and how to design a database. As today's tutorial is more practical rather than theoretical.
+This tutorial assumes you already have common knowledge of what a database is, what a relational database is, and how to design a database. Today's tutorial is more practical than theoretical.
 
 ## Choose a Topic
 
-First of all, we need a topic to design and implement our database for. Here are a two basic topics to choose from:
+First, we need a topic to design and implement our database for. Here are two basic topics to choose from:
 
 - [Simple Library Management](/topics/simple-library-management)
 - [Simple E-Commerce](/topics/simple-ecommerce)
 
 ## Choose a DBMS
 
-Now that we know the topic and have designed its schema, we need to choose a DBMS to implement our database schema in. There are so many great DBMSs for different use-cases and project scales, such as:
+Now that we know the topic and have designed its schema, we need to choose a DBMS to implement our database schema in. There are many great DBMSs for different use cases and project scales, such as:
 
 - [SQLite](https://sqlite.org)
 - [PostgreSQL](https://postgresql.org)
 - [MySQL](https://mysql.com) or [MariaDB](https://mariadb.org)
 - [MS SQL Server](https://microsoft.com/en-us/sql-server)
 
-For this tutorial I chose `PostgreSQL` as it's being widely used in large scale projects and does a great job on providing the best possible developer experience. Though as this tutorial just covers the basics, any DBMS works just fine.
+For this tutorial, I chose `PostgreSQL` because it's widely used in large-scale projects and provides an excellent developer experience. Though this tutorial only covers the basics, any DBMS works fine.
 
 - [Download Postgres](https://postgresql.org/download)
 - [Postgres Arch Wiki](https://wiki.archlinux.org/title/PostgreSQL)
 
 ## Quick Note
 
-Now that we have everything to get started, there's one little piece that's worth mentioning.
+Now that we have everything to get started, there's one small thing worth mentioning.
 
 - **Documentation is your best friend.**
 
-Thus, in this tutorial, we will take a quick look at PostgreSQL's documentation and learn how we could take the most advantage out of it.
+Thus, in this tutorial we will take a quick look at PostgreSQL's documentation and learn how to get the most out of it.
 
 - [Official Documentation](https://postgresql.org/docs)
 
 ## Create the Database
 
-Creating a new database is the easiest part in almost any DBMS if you have a proper setup.
+Creating a new database is the easiest part in almost any DBMS, provided you have a proper setup.
 
-It's as simple as executing as this:
+It's as simple as executing this:
 
 ```sql
 create database my_project
@@ -50,7 +50,7 @@ create database my_project
 
 ## Create the tables
 
-Creating the tables are a bit tricky depending on your schema as there are multiple things you have to consider. Such as:
+Creating tables can be a bit tricky depending on your schema, since there are multiple things to consider, such as:
 
 1. [Data Types](https://www.postgresql.org/docs/current/datatype.html)
    - [Numerics](https://www.postgresql.org/docs/current/datatype-numeric.html)
@@ -61,7 +61,7 @@ Creating the tables are a bit tricky depending on your schema as there are multi
 3. [Constraints](https://www.postgresql.org/docs/current/ddl-constraints.html)
 4. [Indexes](https://www.postgresql.org/docs/current/indexes.html)
 
-But here's how it usually look like:
+But here's how it usually looks:
 
 ```sql
 create table products (
@@ -69,16 +69,16 @@ create table products (
     name        varchar(512)    not null,
     category_id bigint          not null    references categories (id),
     description text,
-    price       int             not null    check (price >= 10000)
+    price       int             not null    check (price >= 10000),
     created_at  timestamptz     not null    default now()
-)
+);
 ```
 
 - [Reference](https://www.postgresql.org/docs/18/sql-createtable.html)
 
 ## CRUD
 
-The term **CRUD** stands for **Create**, **Read**, **Update**, and **Delete**, Which in SQL terms they'll translate to:
+The term **CRUD** stands for **Create**, **Read**, **Update**, and **Delete**, which translate to the following SQL commands:
 
 | Term   | SQL    |
 | ------ | ------ |
@@ -89,7 +89,7 @@ The term **CRUD** stands for **Create**, **Read**, **Update**, and **Delete**, W
 
 ### `INSERT`
 
-Insert queries are used to _create_ a record inside a _table_.
+Insert queries are used to _create_ a record in a _table_.
 
 ```sql
 insert into products (name, description)
@@ -100,7 +100,7 @@ insert into products (name, description)
 
 ### `SELECT`
 
-Select queries are used to read some data from one or multiple tables at the same time that have some optional conditions in a specific order.
+Select queries are used to read data from one or more tables, optionally applying conditions and ordering the results.
 
 ```sql
 select
@@ -117,7 +117,7 @@ order by
 
 ### `UPDATE`
 
-Update queries are used to update the data of one or multiple records of a table that have a specific condition.
+Update queries are used to change one or more rows in a table that match a specific condition.
 
 ```sql
 update products
@@ -132,7 +132,7 @@ where
 
 ### `DELETE`
 
-Delete queries are used to delete one or multiple records from a table table have a specific condition.
+Delete queries are used to remove one or more rows from a table that match a specific condition.
 
 ```sql
 delete from products
