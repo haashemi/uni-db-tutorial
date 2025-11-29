@@ -6,18 +6,10 @@ This tutorial assumes that you already home common knowledge on what a database 
 
 ## Choose a Topic
 
-First of all, we need a topic to design and implement our database for. Here are a few basic topics to choose from:
+First of all, we need a topic to design and implement our database for. Here are a two basic topics to choose from:
 
-- TODO
-<!-- - E-Commerce Inventory and Order Management
-- University Course Registration System
-- Social Media Platform
-- Library Management System
-- Airline Reservation System
-- Hospital Patient Records
-- Employee HR and Payroll System
-- Hotel Booking and Room Management
-- Movie Streaming and Rating Database -->
+- [Simple Library Management](/topics/simple-library-management)
+- [Simple E-Commerce](/topics/simple-ecommerce)
 
 ## Choose a DBMS
 
@@ -97,8 +89,54 @@ The term **CRUD** stands for **Create**, **Read**, **Update**, and **Delete**, W
 
 ### `INSERT`
 
+Insert queries are used to _create_ a record inside a _table_.
+
+```sql
+insert into products (name, description)
+    values ('BMW M5 Competition (2024)', 'You know what exactly this is');
+```
+
+- [Reference](https://www.postgresql.org/docs/current/sql-insert.html)
+
 ### `SELECT`
+
+Select queries are used to read some data from one or multiple tables at the same time that have some optional conditions in a specific order.
+
+```sql
+select
+    id,
+    name,
+    description
+from
+    products
+order by
+    name;
+```
+
+- [Reference](https://www.postgresql.org/docs/current/sql-select.html)
 
 ### `UPDATE`
 
+Update queries are used to update the data of one or multiple records of a table that have a specific condition.
+
+```sql
+update products
+set
+    off_percentage = 10
+where
+    created_at >= (now() - '7 days'::interval);
+```
+
+- [Datetime Operators](https://www.postgresql.org/docs/current/functions-datetime.html)
+- [Reference](https://www.postgresql.org/docs/current/sql-update.html)
+
 ### `DELETE`
+
+Delete queries are used to delete one or multiple records from a table table have a specific condition.
+
+```sql
+delete from products
+where id = 96329;
+```
+
+- [Reference](https://www.postgresql.org/docs/current/sql-delete.html)
